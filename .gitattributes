@@ -10,4 +10,5 @@
 /.styleci.yml   export-ignore
 /docs              export-ignore
 /tests              export-ignore
+/resources              export-ignore
 /.editorconfig      export-ignore
