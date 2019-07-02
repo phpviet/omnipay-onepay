@@ -270,6 +270,69 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     }
 
     /**
+     * Trả về số điện thoại khách hàng.
+     *
+     * @return null|string
+     */
+    public function getVpcCustomerPhone(): ?string
+    {
+        return $this->getParameter('vpc_Customer_Phone');
+    }
+
+    /**
+     * Thiết lập số điện thoại khách hàng.
+     *
+     * @param  string  $phone
+     * @return $this
+     */
+    public function setVpcCustomerPhone(string $phone)
+    {
+        return $this->setParameter('vpc_Customer_Phone', $phone);
+    }
+
+    /**
+     * Trả về id khách hàng.
+     *
+     * @return null|string
+     */
+    public function getVpcCustomerId(): ?string
+    {
+        return $this->getParameter('vpc_Customer_Id');
+    }
+
+    /**
+     * Thiết lập id khách hàng.
+     *
+     * @param  string  $id
+     * @return $this
+     */
+    public function setVpcCustomerId(string $id)
+    {
+        return $this->setParameter('vpc_Customer_Id', $id);
+    }
+
+    /**
+     * Trả về email khách hàng.
+     *
+     * @return null|string
+     */
+    public function getVpcCustomerEmail(): ?string
+    {
+        return $this->getParameter('vpc_Customer_Email');
+    }
+
+    /**
+     * Thiết lập email khách hàng.
+     *
+     * @param  string  $email
+     * @return $this
+     */
+    public function setVpcCustomerEmail(string $email)
+    {
+        return $this->setParameter('vpc_Customer_Email', $email);
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getSignatureParameters(): array
