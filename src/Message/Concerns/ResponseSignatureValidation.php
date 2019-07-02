@@ -23,23 +23,22 @@ trait ResponseSignatureValidation
      */
     protected function validateSignature(): void
     {
-        $data = [];
-        $requestParameters = $this->getRequest()->getParameters();
-        $signature = new Signature($requestParameters['vpc_HashKey']);
-
-        foreach ($this->getSignatureParameters() as $parameter) {
-            $data[$parameter] = $this->data[$parameter];
-        }
+        $data = array_filter(array_keys($this->data), function ($parameter) {
+            return 0 === strpos($parameter, 'vpc_');
+        });
+        $signature = new Signature(
+            $this->getRequest()->getVpcHashKey()
+        );
 
         if (! $signature->validate($data, $this->data['vpc_SecureHash'])) {
             throw new InvalidResponseException(sprintf('Data signature response from OnePay is invalid!'));
         }
     }
 
-    /**
-     * Trả về danh sách các param data đã dùng để tạo chữ ký dữ liệu.
-     *
-     * @return array
-     */
-    abstract protected function getSignatureParameters(): array;
+    protected function getSignatureParameters(): array
+    {
+        return array_filter(array_keys($this->data), function ($parameter) {
+            return 0 === strpos($parameter, 'vpc_');
+        });
+    }
 }

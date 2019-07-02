@@ -23,7 +23,9 @@ trait RequestSignature
     protected function generateSignature(): string
     {
         $data = [];
-        $signature = new Signature($this->getParameter('vpc_HashKey'));
+        $signature = new Signature(
+            $this->getVpcHashKey()
+        );
 
         foreach ($this->getSignatureParameters() as $parameter) {
             $data[$parameter] = $this->getParameter($parameter);

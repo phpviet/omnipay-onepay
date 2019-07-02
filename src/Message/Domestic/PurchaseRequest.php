@@ -8,29 +8,15 @@
 
 namespace Omnipay\OnePay\Message\Domestic;
 
-use Omnipay\OnePay\Message\AbstractSignatureRequest;
+use Omnipay\OnePay\Message\AbstractPurchaseRequest;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-class PurchaseRequest extends AbstractSignatureRequest
+class PurchaseRequest extends AbstractPurchaseRequest
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function getSignatureParameters(): array
-    {
-        $signatureParameters = [];
+    protected $testEndpoint = 'https://mtf.onepay.vn/onecomm-pay/vpc.op';
 
-        foreach ($this->getParameters() as $parameter => $value) {
-            if (0 === strpos($parameter, 'vpc_')) {
-                $signatureParameters[$parameter] = $value;
-            }
-        }
-
-        return $signatureParameters;
-    }
-
-
+    protected $productionEndpoint = 'https://onepay.vn/onecomm-pay/vpc.op';
 }
