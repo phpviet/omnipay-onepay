@@ -43,15 +43,9 @@ class AbstractQueryTransactionRequest extends AbstractSignatureRequest
      */
     protected function getSignatureParameters(): array
     {
-        $baseParameters = array_fill_keys([
+        return [
             'vpc_Command', 'vpc_Version', 'vpc_MerchTxnRef', 'vpc_Merchant', 'vpc_AccessCode', 'vpc_User',
             'vpc_Password',
-        ], true);
-        $parameters = array_merge($baseParameters, $this->getParameters());
-        $parameters = array_filter(array_keys($parameters), function ($parameter) {
-            return 0 === strpos($parameter, 'vpc_');
-        });
-
-        return $parameters;
+        ];
     }
 }
