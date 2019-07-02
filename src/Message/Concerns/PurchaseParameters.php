@@ -102,6 +102,50 @@ trait PurchaseParameters
     }
 
     /**
+     * Phương thức ánh xạ của [[getClientIp()]].
+     *
+     * @return null|string
+     * @see getAmount
+     */
+    public function getVpcAmount(): ?string
+    {
+        return $this->getAmount();
+    }
+
+    /**
+     * Phương thức ánh xạ của [[setClientIp()]].
+     *
+     * @param  string  $amount
+     * @return $this
+     * @see setAmount
+     */
+    public function setVpcAmount(string $amount)
+    {
+        return $this->setAmount($amount);
+    }
+
+    /**
+     * Trả về số tiền của đơn hàng.
+     *
+     * @return null|string
+     */
+    public function getAmount(): ?string
+    {
+        return $this->getParameter('vpc_Amount');
+    }
+
+    /**
+     * Thiết lập số tiền đơn hàng cần thanh toán.
+     *
+     * @param  string  $value
+     * @return $this
+     */
+    public function setAmount($value)
+    {
+        return $this->setParameter('vpc_Amount', $value);
+    }
+
+    /**
      * Trả về thông tin đơn hàng.
      *
      * @return null|string
@@ -120,5 +164,26 @@ trait PurchaseParameters
     public function setVpcOrderInfo(string $info)
     {
         return $this->setParameter('vpc_OrderInfo', $info);
+    }
+
+    /**
+     * Trả về mã đơn hàng cần thanh toán.
+     *
+     * @return null|string
+     */
+    public function getVpcMerchTxnRef(): ?string
+    {
+        return $this->getParameter('vpc_MerchTxnRef');
+    }
+
+    /**
+     * Thiết lập mã đơn hàng cần thanh toán tại hệ thống của bạn.
+     *
+     * @param  string  $info
+     * @return $this
+     */
+    public function setVpcMerchTxnRef(string $ref)
+    {
+        return $this->setParameter('vpc_MerchTxnRef', $ref);
     }
 }

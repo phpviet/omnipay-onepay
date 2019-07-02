@@ -25,10 +25,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function initialize(array $parameters = [])
     {
-        parent::initialize(
+        return parent::initialize(
             $this->normalizeParameters($parameters)
         );
-
-        return $this;
     }
 }

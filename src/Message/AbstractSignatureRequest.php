@@ -31,14 +31,4 @@ abstract class AbstractSignatureRequest extends AbstractRequest
 
         return $parameters;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getSignatureParameters(): array
-    {
-        return array_filter(array_keys($this->getParameters()), function ($parameter) {
-            return 0 === strpos($parameter, 'vpc_');
-        });
-    }
 }
