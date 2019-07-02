@@ -11,7 +11,7 @@ namespace Omnipay\OnePay\Message;
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-abstract class AbstractIncomingRequest extends AbstractRequest
+class IncomingRequest extends AbstractRequest
 {
     /**
      * {@inheritdoc}
@@ -28,16 +28,21 @@ abstract class AbstractIncomingRequest extends AbstractRequest
 
     /**
      * {@inheritdoc}
+     * @throws \Omnipay\Common\Exception\InvalidResponseException
+     */
+    public function sendData($data): IncomingResponse
+    {
+        return $this->response = new IncomingResponse($this, $data);
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function initialize(array $parameters = [])
     {
         parent::initialize($parameters);
 
-        $incomingParameters = $this->normalizeParameters(
-            $this->getIncomingParameters()
-        );
-
-        foreach ($incomingParameters as $parameter => $value) {
+        foreach ($this->getIncomingParameters() as $parameter => $value) {
             $this->setParameter($parameter, $value);
         }
 
@@ -49,5 +54,10 @@ abstract class AbstractIncomingRequest extends AbstractRequest
      *
      * @return array
      */
-    abstract protected function getIncomingParameters(): array;
+    protected function getIncomingParameters(): array
+    {
+        return $this->normalizeParameters(
+            $this->httpRequest->query->all()
+        );
+    }
 }

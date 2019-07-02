@@ -141,27 +141,6 @@ trait Parameters
     }
 
     /**
-     * Trả về đơn vị tiền tệ sử dụng thanh toán của khách.
-     *
-     * @return null|string
-     */
-    public function getVpcCurrency(): ?string
-    {
-        return $this->getCurrency();
-    }
-
-    /**
-     * Thiết lập đơn vị tiền tệ sử dụng thanh toán của khách.
-     *
-     * @param  string  $currency
-     * @return $this
-     */
-    public function setVpcCurrency(string $currency)
-    {
-        return $this->setCurrency($currency);
-    }
-
-    /**
      * Trả giao diện ngôn ngữ khách dùng để thanh toán.
      *
      * @return null|string
@@ -180,21 +159,5 @@ trait Parameters
     public function setVpcLocale(string $locale)
     {
         return $this->setParameter('vpc_Locale', $locale);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrency(): ?string
-    {
-        return ($currency = $this->getParameter('vpc_Currency')) ? strtoupper($currency) : null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCurrency($value)
-    {
-        return $this->setParameter('vpc_Currency', $value);
     }
 }

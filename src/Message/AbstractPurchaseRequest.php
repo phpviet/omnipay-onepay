@@ -21,6 +21,7 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     {
         parent::initialize($parameters);
 
+        $this->setParameter('vpc_Command', 'pay');
         $this->setAgainLink(
             $this->getAgainLink() ?? $this->httpRequest->getUri()
         );
@@ -29,6 +30,9 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
         );
         $this->setTitle(
             $this->getTitle() ?? ''
+        );
+        $this->setCurrency(
+            $this->getCurrency() ?? 'VND'
         );
 
         return $this;
@@ -50,7 +54,7 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * {@inheritdoc}
      */
-    public function sendData($data)
+    public function sendData($data): PurchaseResponse
     {
         return $this->response = new PurchaseResponse($this, $data);
     }
@@ -226,6 +230,43 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     public function setVpcMerchTxnRef(string $ref)
     {
         return $this->setParameter('vpc_MerchTxnRef', $ref);
+    }
+
+    /**
+     * Trả về đơn vị tiền tệ sử dụng thanh toán của khách.
+     *
+     * @return null|string
+     */
+    public function getVpcCurrency(): ?string
+    {
+        return $this->getCurrency();
+    }
+
+    /**
+     * Thiết lập đơn vị tiền tệ sử dụng thanh toán của khách.
+     *
+     * @param  string  $currency
+     * @return $this
+     */
+    public function setVpcCurrency(string $currency)
+    {
+        return $this->setCurrency($currency);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrency(): ?string
+    {
+        return ($currency = $this->getParameter('vpc_Currency')) ? strtoupper($currency) : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCurrency($value)
+    {
+        return $this->setParameter('vpc_Currency', $value);
     }
 
     /**

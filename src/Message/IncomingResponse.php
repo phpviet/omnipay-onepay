@@ -1,8 +1,9 @@
 <?php
 /**
  * @link https://github.com/phpviet/omnipay-onepay
+ *
  * @copyright (c) PHP Viet
- * @license [MIT](http://www.opensource.org/licenses/MIT)
+ * @license [MIT](https://opensource.org/licenses/MIT)
  */
 
 namespace Omnipay\OnePay\Message;
@@ -13,7 +14,7 @@ use Omnipay\Common\Message\RequestInterface;
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-abstract class AbstractSignatureResponse extends AbstractResponse
+class IncomingResponse extends Response
 {
     use Concerns\ResponseSignatureValidation;
 

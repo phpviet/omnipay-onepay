@@ -7,7 +7,7 @@
 
 namespace Omnipay\OnePay\Message;
 
-use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * @method AbstractRequest getRequest()
@@ -15,7 +15,7 @@ use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-abstract class AbstractResponse extends BaseAbstractResponse
+class Response extends AbstractResponse
 {
     use Concerns\ResponseProperties;
 
@@ -36,6 +36,30 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getMessage(): ?string
     {
-        return $this->data['message'] ?? null;
+        return $this->data['vpc_Message'] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCode(): ?string
+    {
+        return $this->data['vpc_TxnResponseCode'] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTransactionId(): ?string
+    {
+        return $this->data['vpc_MerchTxnRef'] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTransactionReference(): ?string
+    {
+        return $this->data['vpc_TransactionNo'] ?? null;
     }
 }

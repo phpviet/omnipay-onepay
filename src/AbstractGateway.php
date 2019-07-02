@@ -35,7 +35,6 @@ abstract class AbstractGateway extends BaseAbstractGateway
     public function getDefaultParameters(): array
     {
         return [
-            'vpc_Currency' => 'VND',
             'vpc_Version' => 2,
             'vpc_Locale' => 'vn',
         ];

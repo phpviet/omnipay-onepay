@@ -12,13 +12,13 @@ namespace Omnipay\OnePay\Message;
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-abstract class AbstractCompletePurchaseRequest extends AbstractIncomingRequest
+class QueryTransactionResponse extends Response
 {
     /**
      * {@inheritdoc}
      */
-    protected function getIncomingParameters(): array
+    public function isSuccessful(): bool
     {
-        return $this->httpRequest->query->all();
+        return parent::isSuccessful() && 0 === strcasecmp('y', $this->data['vpc_DRExists']);
     }
 }

@@ -21,8 +21,10 @@ trait ResponseProperties
      */
     public function __get($name)
     {
-        if (isset($this->data[$name])) {
-            return $this->data[$name];
+        $property = $this->propertyNormalize($name);
+
+        if (isset($this->data[$property])) {
+            return $this->data[$property];
         } else {
             trigger_error(sprintf('Undefined property: %s::%s', __CLASS__, '$'.$name), E_USER_NOTICE);
 
@@ -39,10 +41,27 @@ trait ResponseProperties
      */
     public function __set($name, $value)
     {
-        if (isset($this->data[$name])) {
+        $property = $this->propertyNormalize($name);
+
+        if (isset($this->data[$property])) {
             trigger_error(sprintf('Undefined property: %s::%s', __CLASS__, '$'.$name), E_USER_NOTICE);
         } else {
             $this->$name = $value;
         }
+    }
+
+    /**
+     * Phương thức hổ trợ chuyển đổi property `vpcAbc` thành `vpc_Abc`.
+     *
+     * @param  string  $property
+     * @return null|string
+     */
+    private function propertyNormalize(string $property): ?string
+    {
+        if (0 === strpos($property, 'vpc') && false === strpos($property, '_')) {
+            return 'vpc_'.substr($property, 3);
+        }
+
+        return null;
     }
 }
