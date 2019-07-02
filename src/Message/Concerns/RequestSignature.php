@@ -16,7 +16,7 @@ use Omnipay\OnePay\Support\Signature;
 trait RequestSignature
 {
     /**
-     * Trả về chữ ký điện tử gửi đến MoMo dựa theo [[getSignatureParameters()]].
+     * Trả về chữ ký điện tử gửi đến OnePay dựa theo [[getSignatureParameters()]].
      *
      * @return string
      */

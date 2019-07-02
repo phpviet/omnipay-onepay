@@ -38,9 +38,10 @@ class Signature
      */
     public function generate(array $data): string
     {
-        $data = urldecode(http_build_query($data));
+        ksort($data);
+        $dataSign = urldecode(http_build_query($data));
 
-        return strtoupper(hash_hmac('sha256', $data, $this->hashKey));
+        return strtoupper(hash_hmac('sha256', $dataSign, $this->hashKey));
     }
 
     /**
