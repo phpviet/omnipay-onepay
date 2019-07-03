@@ -21,16 +21,16 @@ trait Parameters
      */
     public function getVpcMerchant(): ?string
     {
-        $this->getParameter('vpc_Merchant');
+        return $this->getParameter('vpc_Merchant');
     }
 
     /**
      * Thiết lập giá trị merchant id.
      *
-     * @param  string  $merchant
+     * @param  null|string  $merchant
      * @return $this
      */
-    public function setVpcMerchant(string $merchant)
+    public function setVpcMerchant(?string $merchant)
     {
         return $this->setParameter('vpc_Merchant', $merchant);
     }
@@ -48,10 +48,10 @@ trait Parameters
     /**
      * Thiết lập giá trị access code.
      *
-     * @param  string  $code
+     * @param  null|string  $code
      * @return $this
      */
-    public function setVpcAccessCode(string $code)
+    public function setVpcAccessCode(?string $code)
     {
         return $this->setParameter('vpc_AccessCode', $code);
     }
@@ -69,10 +69,10 @@ trait Parameters
     /**
      * Thiết lập giá trị hash key dùng để tạo chữ ký dữ liệu (secure hash).
      *
-     * @param  string  $key
+     * @param  null|string  $key
      * @return $this
      */
-    public function setVpcHashKey(string $key)
+    public function setVpcHashKey(?string $key)
     {
         return $this->setParameter('vpc_HashKey', $key);
     }
@@ -90,10 +90,10 @@ trait Parameters
     /**
      * Thiết lập giá trị user.
      *
-     * @param  string  $user
+     * @param  null|string  $user
      * @return $this
      */
-    public function setVpcUser(string $user)
+    public function setVpcUser(?string $user)
     {
         return $this->setParameter('vpc_User', $user);
     }
@@ -111,10 +111,10 @@ trait Parameters
     /**
      * Thiết lập giá trị password.
      *
-     * @param  string  $password
+     * @param  null|string  $password
      * @return $this
      */
-    public function setVpcPassword(string $password)
+    public function setVpcPassword(?string $password)
     {
         return $this->setParameter('vpc_Password', $password);
     }
@@ -132,32 +132,11 @@ trait Parameters
     /**
      * Thiết lập giá trị version muốn sử dụng.
      *
-     * @param  string  $version
+     * @param  null|string  $version
      * @return $this
      */
-    public function setVpcVersion(string $version)
+    public function setVpcVersion(?string $version)
     {
         return $this->setParameter('vpc_Version', $version);
-    }
-
-    /**
-     * Trả giao diện ngôn ngữ khách dùng để thanh toán.
-     *
-     * @return null|string
-     */
-    public function getVpcLocale(): ?string
-    {
-        return $this->getParameter('vpc_Locale');
-    }
-
-    /**
-     * Thiết lập giao diện ngôn ngữ khách dùng để thanh toán.
-     *
-     * @param  string  $locale
-     * @return $this
-     */
-    public function setVpcLocale(string $locale)
-    {
-        return $this->setParameter('vpc_Locale', $locale);
     }
 }

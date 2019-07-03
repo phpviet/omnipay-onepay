@@ -36,7 +36,6 @@ abstract class AbstractGateway extends BaseAbstractGateway
     {
         return [
             'vpc_Version' => 2,
-            'vpc_Locale' => 'vn',
         ];
     }
 }

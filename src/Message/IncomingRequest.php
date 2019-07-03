@@ -50,14 +50,12 @@ class IncomingRequest extends AbstractRequest
     }
 
     /**
-     * Trả về danh sách parameters từ MoMo gửi sang.
+     * Trả về danh sách parameters từ OnePay gửi sang.
      *
      * @return array
      */
     protected function getIncomingParameters(): array
     {
-        return $this->normalizeParameters(
-            $this->httpRequest->query->all()
-        );
+        return $this->httpRequest->query->all();
     }
 }

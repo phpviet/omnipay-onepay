@@ -34,6 +34,9 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
         $this->setCurrency(
             $this->getCurrency() ?? 'VND'
         );
+        $this->setVpcLocale(
+            $this->getVpcLocale() ?? 'vn'
+        );
 
         return $this;
     }
@@ -46,7 +49,7 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     {
         $this->validate('AgainLink', 'Title');
         $data = parent::getData();
-        $data['redirect_url'] = $this->getEndpoint().'?'.http_build_query($data);
+        unset($data['vpc_User'], $data['vpc_Password']);
 
         return $data;
     }
@@ -56,7 +59,30 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
      */
     public function sendData($data): PurchaseResponse
     {
-        return $this->response = new PurchaseResponse($this, $data);
+        $redirectUrl = $this->getEndpoint().'?'.http_build_query($data);
+
+        return $this->response = new PurchaseResponse($this, $data, $redirectUrl);
+    }
+
+    /**
+     * Trả giao diện ngôn ngữ khách dùng để thanh toán.
+     *
+     * @return null|string
+     */
+    public function getVpcLocale(): ?string
+    {
+        return $this->getParameter('vpc_Locale');
+    }
+
+    /**
+     * Thiết lập giao diện ngôn ngữ khách dùng để thanh toán.
+     *
+     * @param  null|string  $locale
+     * @return $this
+     */
+    public function setVpcLocale(?string $locale)
+    {
+        return $this->setParameter('vpc_Locale', $locale);
     }
 
     /**
@@ -73,10 +99,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập đường dẫn thanh toán tại hệ thống của bạn mà khách đã dùng để thanh toán.
      *
-     * @param  string  $link
+     * @param  null|string  $link
      * @return $this
      */
-    public function setAgainLink(string $link)
+    public function setAgainLink(?string $link)
     {
         return $this->setParameter('AgainLink', $link);
     }
@@ -94,10 +120,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập tiêu đề hiển thị tại OnePay khi thanh toán.
      *
-     * @param  string  $title
+     * @param  null|string  $title
      * @return $this
      */
-    public function setTitle(string $title)
+    public function setTitle(?string $title)
     {
         return $this->setParameter('Title', $title);
     }
@@ -116,19 +142,17 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Phương thức ánh xạ của [[setClientIp()]].
      *
-     * @param  string  $ticketNo
+     * @param  null|string  $ticketNo
      * @return $this
      * @see setClientIp
      */
-    public function setVpcTicketNo(string $ticketNo)
+    public function setVpcTicketNo(?string $ticketNo)
     {
         return $this->setClientIp($ticketNo);
     }
 
     /**
-     * Trả về IP của khách dùng để thanh toán. Nếu không thiết lập sẽ lấy theo IP client đang truy cập hệ thống, đối với CLI mode thì sẽ là empty.
-     *
-     * @return null|string
+     * {@inheritdoc}
      */
     public function getClientIp(): ?string
     {
@@ -136,10 +160,7 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     }
 
     /**
-     * Thiết lập IP của khách dùng để thanh toán.
-     *
-     * @param  string  $value
-     * @return $this
+     * {@inheritdoc}
      */
     public function setClientIp($value)
     {
@@ -160,19 +181,17 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Phương thức ánh xạ của [[setAmount()]].
      *
-     * @param  string  $amount
+     * @param  null|string  $amount
      * @return $this
      * @see setAmount
      */
-    public function setVpcAmount(string $amount)
+    public function setVpcAmount(?string $amount)
     {
         return $this->setAmount($amount);
     }
 
     /**
-     * Trả về số tiền của đơn hàng.
-     *
-     * @return null|string
+     * {@inheritdoc}
      */
     public function getAmount(): ?string
     {
@@ -180,10 +199,7 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     }
 
     /**
-     * Thiết lập số tiền đơn hàng cần thanh toán.
-     *
-     * @param  string  $value
-     * @return $this
+     * {@inheritdoc}
      */
     public function setAmount($value)
     {
@@ -203,10 +219,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập thông tin đơn hàng.
      *
-     * @param  string  $info
+     * @param  null|string  $info
      * @return $this
      */
-    public function setVpcOrderInfo(string $info)
+    public function setVpcOrderInfo(?string $info)
     {
         return $this->setParameter('vpc_OrderInfo', $info);
     }
@@ -224,10 +240,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập mã đơn hàng cần thanh toán tại hệ thống của bạn.
      *
-     * @param  string  $info
+     * @param  null|string  $ref
      * @return $this
      */
-    public function setVpcMerchTxnRef(string $ref)
+    public function setVpcMerchTxnRef(?string $ref)
     {
         return $this->setParameter('vpc_MerchTxnRef', $ref);
     }
@@ -245,10 +261,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập đơn vị tiền tệ sử dụng thanh toán của khách.
      *
-     * @param  string  $currency
+     * @param  null|string  $currency
      * @return $this
      */
-    public function setVpcCurrency(string $currency)
+    public function setVpcCurrency(?string $currency)
     {
         return $this->setCurrency($currency);
     }
@@ -282,10 +298,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập số điện thoại khách hàng.
      *
-     * @param  string  $phone
+     * @param  null|string  $phone
      * @return $this
      */
-    public function setVpcCustomerPhone(string $phone)
+    public function setVpcCustomerPhone(?string $phone)
     {
         return $this->setParameter('vpc_Customer_Phone', $phone);
     }
@@ -303,12 +319,52 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập id khách hàng.
      *
-     * @param  string  $id
+     * @param  null|string  $id
      * @return $this
      */
-    public function setVpcCustomerId(string $id)
+    public function setVpcCustomerId(?string $id)
     {
         return $this->setParameter('vpc_Customer_Id', $id);
+    }
+
+    /**
+     * Phương thức ánh xạ của [[getReturnUrl()]].
+     * Trả về đường dẫn tại hệ thống của bạn sẽ redirect khách về sau khi thanh toán.
+     *
+     * @return null|string
+     * @see getReturnUrl
+     */
+    public function getVpcReturnURL(): ?string
+    {
+        return $this->getReturnUrl();
+    }
+
+    /**
+     * Phương thức ánh xạ của [[setReturnUrl()]].
+     *
+     * @param  null|string  $url
+     * @return $this
+     * @see setReturnUrl
+     */
+    public function setVpcReturnURL(?string $url)
+    {
+        return $this->setReturnUrl($url);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReturnUrl(): ?string
+    {
+        return $this->getParameter('vpc_ReturnURL');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setReturnUrl($value)
+    {
+        return $this->setParameter('vpc_ReturnURL', $value);
     }
 
     /**
@@ -324,10 +380,10 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
     /**
      * Thiết lập email khách hàng.
      *
-     * @param  string  $email
+     * @param  null|string  $email
      * @return $this
      */
-    public function setVpcCustomerEmail(string $email)
+    public function setVpcCustomerEmail(?string $email)
     {
         return $this->setParameter('vpc_Customer_Email', $email);
     }
@@ -337,14 +393,22 @@ abstract class AbstractPurchaseRequest extends AbstractSignatureRequest
      */
     protected function getSignatureParameters(): array
     {
-        $baseParameters = array_fill_keys([
+        $parameters = [
             'vpc_Version', 'vpc_Currency', 'vpc_Command', 'vpc_AccessCode', 'vpc_Merchant', 'vpc_Locale',
             'vpc_ReturnURL', 'vpc_MerchTxnRef', 'vpc_OrderInfo', 'vpc_Amount', 'vpc_TicketNo',
-        ], true);
-        $parameters = array_merge($baseParameters, $this->getParameters());
-        $parameters = array_filter(array_keys($parameters), function ($parameter) {
-            return 0 === strpos($parameter, 'vpc_');
-        });
+        ];
+
+        if ($this->getVpcCustomerId()) {
+            $parameters[] = 'vpc_Customer_Id';
+        }
+
+        if ($this->getVpcCustomerEmail()) {
+            $parameters[] = 'vpc_Customer_Email';
+        }
+
+        if ($this->getVpcCustomerPhone()) {
+            $parameters[] = 'vpc_Customer_Phone';
+        }
 
         return $parameters;
     }

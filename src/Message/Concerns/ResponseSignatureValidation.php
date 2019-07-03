@@ -23,9 +23,9 @@ trait ResponseSignatureValidation
      */
     protected function validateSignature(): void
     {
-        $data = array_filter(array_keys($this->data), function ($parameter) {
+        $data = array_filter($this->data, function ($parameter) {
             return 0 === strpos($parameter, 'vpc_') && 'vpc_SecureHash' !== $parameter;
-        });
+        }, ARRAY_FILTER_USE_KEY);
         $signature = new Signature(
             $this->getRequest()->getVpcHashKey()
         );

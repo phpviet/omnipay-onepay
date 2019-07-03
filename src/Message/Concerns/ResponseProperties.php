@@ -54,14 +54,14 @@ trait ResponseProperties
      * Phương thức hổ trợ chuyển đổi property `vpcAbc` thành `vpc_Abc`.
      *
      * @param  string  $property
-     * @return null|string
+     * @return string
      */
-    private function propertyNormalize(string $property): ?string
+    private function propertyNormalize(string $property): string
     {
         if (0 === strpos($property, 'vpc') && false === strpos($property, '_')) {
             return 'vpc_'.substr($property, 3);
         }
 
-        return null;
+        return $property;
     }
 }

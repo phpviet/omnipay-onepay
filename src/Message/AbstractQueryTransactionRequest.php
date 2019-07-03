@@ -26,6 +26,27 @@ class AbstractQueryTransactionRequest extends AbstractSignatureRequest
     }
 
     /**
+     * Trả về mã đơn hàng cần truy vấn giao dịch.
+     *
+     * @return null|string
+     */
+    public function getVpcMerchTxnRef(): ?string
+    {
+        return $this->getParameter('vpc_MerchTxnRef');
+    }
+
+    /**
+     * Thiết lập mã đơn hàng cần truy vấn giao dịch tại hệ thống của bạn.
+     *
+     * @param  null|string  $ref
+     * @return $this
+     */
+    public function setVpcMerchTxnRef(?string $ref)
+    {
+        return $this->setParameter('vpc_MerchTxnRef', $ref);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function sendData($data): QueryTransactionResponse
