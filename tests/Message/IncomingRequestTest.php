@@ -38,7 +38,7 @@ class IncomingRequestTest extends TestCase
             'vpc_TransactionNo' => 9,
             'vpc_TxnResponseCode' => 10,
             'vpc_Version' => 11,
-            'vpc_SecureHash' => 12
+            'vpc_SecureHash' => 12,
         ]);
         $this->request = new IncomingRequest($client, $request);
     }
@@ -59,6 +59,5 @@ class IncomingRequestTest extends TestCase
         $this->assertEquals(10, $data['vpc_TxnResponseCode']);
         $this->assertEquals(11, $data['vpc_Version']);
         $this->assertEquals(12, $data['vpc_SecureHash']);
-
     }
 }
