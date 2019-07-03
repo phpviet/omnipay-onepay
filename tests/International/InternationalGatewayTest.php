@@ -12,15 +12,15 @@ use Omnipay\Omnipay;
 use Omnipay\OnePay\Tests\GatewayTestCase;
 use Omnipay\OnePay\Message\IncomingResponse;
 use Omnipay\OnePay\Message\PurchaseResponse;
-use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>
  * @since 1.0.0
  */
-class DomesticGatewayTest extends GatewayTestCase
+class InternationalGatewayTest extends GatewayTestCase
 {
     /**
      * @var \Omnipay\OnePay\DomesticGateway
@@ -87,7 +87,7 @@ class DomesticGatewayTest extends GatewayTestCase
             'vpc_TransactionNo' => '1625746',
             'vpc_TxnResponseCode' => 0,
             'vpc_Version' => 2,
-            'vpc_SecureHash' => '0331F9D8E0CD9A6BC581B74721658DFD9A5A219145F92DED700C13E4843BB3B0'
+            'vpc_SecureHash' => '0331F9D8E0CD9A6BC581B74721658DFD9A5A219145F92DED700C13E4843BB3B0',
         ]);
 
         $response = call_user_func([$this->gateway, $requestMethod])->send();

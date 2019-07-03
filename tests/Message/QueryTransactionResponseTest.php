@@ -32,7 +32,7 @@ class QueryTransactionResponseTest extends TestCase
         $response = new QueryTransactionResponse($this->getMockRequest(), [
             'vpc_MerchTxnRef' => 123,
             'vpc_DRExists' => 'Y',
-            'vpc_TxnResponseCode' => 0
+            'vpc_TxnResponseCode' => 0,
         ]);
 
         $this->assertFalse($response->isPending());
