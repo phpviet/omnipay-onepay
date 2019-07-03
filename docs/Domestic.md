@@ -4,7 +4,7 @@ Domestic Gateway
 Để nắm sơ lược về khái niệm và cách sử dụng các **Omnipay** gateways bạn hãy truy cập vào [đây](https://omnipay.thephpleague.com/) 
 để kham khảo.
 
-## Khởi tạo gateway:
+### Khởi tạo gateway:
 
 ```php
 use Omnipay\Omnipay;
@@ -19,7 +19,7 @@ $gateway->setVpcHashKey('Do OnePay cấp');
 
 Gateway khởi tạo ở trên dùng để tạo các yêu cầu xử lý đến OnePay hoặc dùng để nhận yêu cầu do OnePay gửi đến.
 
-## Tạo yêu cầu thanh toán:
+### Tạo yêu cầu thanh toán:
 
 ```php
 $response = $gateway->purchase([
@@ -40,7 +40,7 @@ if ($response->isRedirect()) {
 
 Kham khảo thêm các tham trị khi tạo yêu cầu và OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
-## Kiểm tra thông tin `vpc_ReturnURL` khi khách được OnePay redirect về:
+### Kiểm tra thông tin `vpc_ReturnURL` khi khách được OnePay redirect về:
 
 ```php
 $response = $gateway->completePurchase()->send();
@@ -60,7 +60,7 @@ if ($response->isSuccessful()) {
 
 Kham khảo thêm các tham trị khi OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
-## Kiểm tra thông tin `IPN` do OnePay gửi sang:
+### Kiểm tra thông tin `IPN` do OnePay gửi sang:
 
 ```php
 $response = $gateway->notification()->send();
@@ -80,7 +80,7 @@ if ($response->isSuccessful()) {
 
 Kham khảo thêm các tham trị khi OnePay gửi sang tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
-## Kiểm tra trạng thái giao dịch:
+### Kiểm tra trạng thái giao dịch:
 
 ```php
 $response = $gateway->queryTransaction([
@@ -100,7 +100,7 @@ if ($response->isSuccessful()) {
 
 Kham khảo thêm các tham trị khi tạo yêu cầu và OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
-## Phương thức hổ trợ debug:
+### Phương thức hổ trợ debug:
 
 Một số phương thức chung hổ trợ debug khi `isSuccessful()` trả về `FALSE`:
 
