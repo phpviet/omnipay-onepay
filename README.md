@@ -8,7 +8,7 @@
     <a href="https://packagist.org/packages/phpviet/omnipay-onepay"><img src="https://img.shields.io/packagist/v/phpviet/omnipay-onepay.svg?style=flat-square" alt="Latest version"></a>
     <a href="https://travis-ci.org/phpviet/omnipay-onepay"><img src="https://img.shields.io/travis/phpviet/omnipay-onepay/master.svg?style=flat-square" alt="Build status"></a>
     <a href="https://scrutinizer-ci.com/g/phpviet/omnipay-onepay"><img src="https://img.shields.io/scrutinizer/g/phpviet/omnipay-onepay.svg?style=flat-square" alt="Quantity score"></a>
-    <a href="https://styleci.io/repos/189053576"><img src="https://styleci.io/repos/189053576/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://styleci.io/repos/189053724"><img src="https://styleci.io/repos/189053724/shield?branch=master" alt="StyleCI"></a>
     <a href="https://packagist.org/packages/phpviet/omnipay-onepay"><img src="https://img.shields.io/packagist/dt/phpviet/omnipay-onepay.svg?style=flat-square" alt="Total download"></a>
     <a href="https://packagist.org/packages/phpviet/omnipay-onepay"><img src="https://img.shields.io/packagist/l/phpviet/omnipay-onepay.svg?style=flat-square" alt="License"></a>
     </p>
