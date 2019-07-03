@@ -38,7 +38,7 @@ if ($response->isRedirect()) {
 }
 ```
 
-Kham khảo thêm các tham trị khi tạo yêu cầu và MoMo trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
+Kham khảo thêm các tham trị khi tạo yêu cầu và OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
 ## Kiểm tra thông tin `vpc_ReturnURL` khi khách được OnePay redirect về:
 
@@ -58,7 +58,7 @@ if ($response->isSuccessful()) {
 }
 ```
 
-Kham khảo thêm các tham trị khi MoMo trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
+Kham khảo thêm các tham trị khi OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
 ## Kiểm tra thông tin `IPN` do OnePay gửi sang:
 
@@ -70,7 +70,7 @@ if ($response->isSuccessful()) {
     print $response->vpc_Amount;
     print $response->vpc_MerchTxnRef;
     
-    var_dump($response->getData()); // toàn bộ data do MoMo gửi sang.
+    var_dump($response->getData()); // toàn bộ data do OnePay gửi sang.
     
 } else {
 
@@ -78,7 +78,7 @@ if ($response->isSuccessful()) {
 }
 ```
 
-Kham khảo thêm các tham trị khi MoMo gửi sang tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
+Kham khảo thêm các tham trị khi OnePay gửi sang tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
 ## Kiểm tra trạng thái giao dịch:
 
@@ -90,7 +90,7 @@ $response = $gateway->queryTransaction([
 if ($response->isSuccessful()) {
     // TODO: xử lý kết quả và hiển thị.
 
-    var_dump($response->getData()); // toàn bộ data do MoMo gửi về.
+    var_dump($response->getData()); // toàn bộ data do OnePay gửi về.
     
 } else {
 
@@ -98,7 +98,7 @@ if ($response->isSuccessful()) {
 }
 ```
 
-Kham khảo thêm các tham trị khi tạo yêu cầu và MoMo trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
+Kham khảo thêm các tham trị khi tạo yêu cầu và OnePay trả về tại [đây](https://mtf.onepay.vn/developer/resource/documents/docx/quy_trinh_tich_hop-noidia.pdf).
 
 ## Phương thức hổ trợ debug:
 
