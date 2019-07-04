@@ -29,7 +29,7 @@ class IncomingResponse extends Response
     {
         parent::__construct($request, $data);
 
-        if ('0' === $this->getCode()) {
+        if ($this->isSuccessful()) {
             $this->validateSignature();
         }
     }
