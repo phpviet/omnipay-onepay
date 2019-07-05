@@ -10,11 +10,13 @@ Domestic Gateway
 use Omnipay\Omnipay;
 
 $gateway = Omnipay::create('OnePay_Domestic');
-$gateway->setVpcMerchant('Do OnePay cấp');
-$gateway->setVpcAccessCode('Do OnePay cấp');
-$gateway->setVpcUser('Do OnePay cấp');
-$gateway->setVpcPassword('Do OnePay cấp');
-$gateway->setVpcHashKey('Do OnePay cấp');
+$gateway->initialize([
+    'vpc_Merchant' => 'Do OnePay cấp',
+    'vpc_AccessCode' => 'Do OnePay cấp',
+    'vpc_User' => 'Do OnePay cấp',
+    'vpc_Password' => 'Do OnePay cấp',
+    'vpc_HashKey' => 'Do OnePay cấp',
+]);
 ```
 
 Gateway khởi tạo ở trên dùng để tạo các yêu cầu xử lý đến OnePay hoặc dùng để nhận yêu cầu do OnePay gửi đến.
@@ -23,9 +25,9 @@ Gateway khởi tạo ở trên dùng để tạo các yêu cầu xử lý đến
 
 ```php
 $response = $gateway->purchase([
+    'AgainLink' => 'https://github.com/phpviet',
     'vpc_MerchTxnRef' => microtime(false),
     'vpc_ReturnURL' => 'https://github.com/phpviet',
-    'againLink' => 'https://github.com/phpviet',
     'vpc_TicketNo' => '127.0.0.1',
     'vpc_Amount' => '200000',
     'vpc_OrderInfo' => 456,
