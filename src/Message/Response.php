@@ -20,7 +20,7 @@ class Response extends AbstractResponse
     use Concerns\ResponseProperties;
 
     /**
-     * Trả về trạng thái do MoMo phản hồi.
+     * Trả về trạng thái thành công hay không do OnePay phản hồi.
      *
      * @return bool
      */
@@ -30,7 +30,17 @@ class Response extends AbstractResponse
     }
 
     /**
-     * Trả về thông báo từ MoMo.
+     * Trả về trạng thái có bị khách hủy đơn hay không do OnePay phản hồi.
+     *
+     * @return bool
+     */
+    public function isCancelled(): bool
+    {
+        return '99' === $this->getCode();
+    }
+
+    /**
+     * Trả về thông báo từ OnePay.
      *
      * @return null|string
      */

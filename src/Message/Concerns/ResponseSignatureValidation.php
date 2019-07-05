@@ -17,7 +17,7 @@ use Omnipay\Common\Exception\InvalidResponseException;
 trait ResponseSignatureValidation
 {
     /**
-     * Kiểm tra tính hợp lệ của dữ liệu do MoMo phản hồi.
+     * Kiểm tra tính hợp lệ của dữ liệu do OnePay phản hồi.
      *
      * @throws InvalidResponseException
      */

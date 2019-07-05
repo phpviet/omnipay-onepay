@@ -24,7 +24,7 @@ trait RequestEndpoint
     protected $testEndpoint;
 
     /**
-     * Trả về url kết nối MoMo.
+     * Trả về url kết nối OnePay.
      *
      * @return string
      */
