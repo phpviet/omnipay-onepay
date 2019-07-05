@@ -20,9 +20,7 @@ class Response extends AbstractResponse
     use Concerns\ResponseProperties;
 
     /**
-     * Trả về trạng thái thành công hay không do OnePay phản hồi.
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isSuccessful(): bool
     {
@@ -30,9 +28,7 @@ class Response extends AbstractResponse
     }
 
     /**
-     * Trả về trạng thái có bị khách hủy đơn hay không do OnePay phản hồi.
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isCancelled(): bool
     {
@@ -40,9 +36,7 @@ class Response extends AbstractResponse
     }
 
     /**
-     * Trả về thông báo từ OnePay.
-     *
-     * @return null|string
+     * {@inheritdoc}
      */
     public function getMessage(): ?string
     {
