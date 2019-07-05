@@ -23,14 +23,20 @@ trait ResponseSignatureValidation
      */
     protected function validateSignature(): void
     {
-        $data = array_filter($this->data, function ($parameter) {
+        $data = $this->getData();
+
+        if (! isset($data['vpc_SecureHash'])) {
+            throw new InvalidResponseException('Response from OnePay is invalid!');
+        }
+
+        $dataSignature = array_filter($data, function ($parameter) {
             return 0 === strpos($parameter, 'vpc_') && 'vpc_SecureHash' !== $parameter;
         }, ARRAY_FILTER_USE_KEY);
         $signature = new Signature(
             $this->getRequest()->getVpcHashKey()
         );
 
-        if (! $signature->validate($data, $this->data['vpc_SecureHash'])) {
+        if (! $signature->validate($dataSignature, $data['vpc_SecureHash'])) {
             throw new InvalidResponseException(sprintf('Data signature response from OnePay is invalid!'));
         }
     }
