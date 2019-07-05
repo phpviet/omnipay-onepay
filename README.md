@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://onepay.vn" target="_blank">
-        <img src="https://raw.githubusercontent.com/phpviet/omnipay-onepay/master/resources/logo.png" height="100px">
+        <img src="https://raw.githubusercontent.com/phpviet/omnipay-onepay/master/resources/logo.png">
     </a>
     <h1 align="center">Omnipay: OnePay</h1>
     <br>
