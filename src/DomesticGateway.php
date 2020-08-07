@@ -8,9 +8,9 @@
 
 namespace Omnipay\OnePay;
 
-use Omnipay\OnePay\Message\IncomingRequest;
 use Omnipay\OnePay\Message\Domestic\PurchaseRequest;
 use Omnipay\OnePay\Message\Domestic\QueryTransactionRequest;
+use Omnipay\OnePay\Message\IncomingRequest;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>

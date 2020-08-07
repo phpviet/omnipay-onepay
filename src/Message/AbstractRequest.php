@@ -7,9 +7,9 @@
 
 namespace Omnipay\OnePay\Message;
 
+use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 use Omnipay\OnePay\Concerns\Parameters;
 use Omnipay\OnePay\Concerns\ParametersNormalization;
-use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>

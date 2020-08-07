@@ -8,13 +8,13 @@
 
 namespace Omnipay\OnePay\Tests\International;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Omnipay;
-use Omnipay\OnePay\Tests\GatewayTestCase;
 use Omnipay\OnePay\Message\IncomingResponse;
 use Omnipay\OnePay\Message\PurchaseResponse;
-use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Common\Message\RedirectResponseInterface;
-use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\OnePay\Tests\GatewayTestCase;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>

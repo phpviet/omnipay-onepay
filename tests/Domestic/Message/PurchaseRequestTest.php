@@ -8,8 +8,8 @@
 
 namespace Omnipay\OnePay\Tests\Domestic\Message;
 
-use Omnipay\Tests\TestCase;
 use Omnipay\OnePay\Message\Domestic\PurchaseRequest;
+use Omnipay\Tests\TestCase;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>

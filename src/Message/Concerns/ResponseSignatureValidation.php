@@ -7,8 +7,8 @@
 
 namespace Omnipay\OnePay\Message\Concerns;
 
-use Omnipay\OnePay\Support\Signature;
 use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\OnePay\Support\Signature;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>
