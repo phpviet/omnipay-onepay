@@ -8,8 +8,8 @@
 
 namespace Omnipay\OnePay\Tests\International\Message;
 
-use Omnipay\Tests\TestCase;
 use Omnipay\OnePay\Message\International\QueryTransactionRequest;
+use Omnipay\Tests\TestCase;
 
 /**
  * @author Vuong Minh <vuongxuongminh@gmail.com>
